@@ -9,9 +9,11 @@ You probably won't need everything for your own project, just use what you need 
 
 You will need to create a .env file and include the mandatory environment variables, which are:
 
-- CAPI_KEY= # you can request this via the FT developer portal
-- TOKEN= # for authorised access without S3O or IP range. This can be set to a noddy value for development.
-- PORT= # auto set in Heroku, but needs specifying for development.
+```
+CAPI_KEY= # you can request this via the FT developer portal
+TOKEN= # for authorised access without S3O or IP range. This can be set to a noddy value for development.
+PORT= # auto set in Heroku, but needs specifying for development.
+```
 
 Optional env var:
 - CAPI_CONCURRENCE= #default = 4

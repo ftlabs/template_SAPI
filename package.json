@@ -5,15 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "test": "mocha ./test --recursive"
+    "test": "export CAPI_KEY=123 && mocha ./test --recursive --exit"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ftlabs/...git"
   },
-  "keywords": [
-    "ftlabs"
-  ],
+  "keywords": ["ftlabs"],
   "author": "jdevt",
   "license": "MIT",
   "bugs": {
@@ -43,6 +41,7 @@
     "xml2js": "^0.4.17"
   },
   "devDependencies": {
+    "nock": "^9.2.6",
     "nodemon": "^1.12.1"
   },
   "engines": {

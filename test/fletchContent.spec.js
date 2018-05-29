@@ -53,6 +53,24 @@ describe("lib/fetchContent", () => {
         await subject.search(resultContext);
         expect(nock.isDone()).to.be.true;
       });
+
+      context("with errors", () => {
+        it("result does not include sapiObj", async () => {
+          const resultContext = {
+            ...defaultSearchTerm,
+            maxResults: 11,
+            offset: 1
+          };
+          nock("http://api.ft.com")
+            .post(
+              `/content/search/v1?apiKey=${CAPI_KEY}`,
+              responseBody.resultContext
+            )
+            .reply(500, {});
+          const result = await subject.search(resultContext);
+          expect(result.sapiObj).to.be.undefined;
+        });
+      });
     });
   });
 });

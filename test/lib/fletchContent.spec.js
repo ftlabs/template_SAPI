@@ -3,15 +3,13 @@ const expect = chai.expect;
 const nock = require("nock");
 const subject = require("../../lib/fetchContent.js");
 const responseBody = require("../fixtures/search/responseBody");
+const searchTerm = require("../fixtures/search/searchTerm");
 const searchFixture = require("../fixtures/search/searchResponse.json");
 const newsFixture = require("../fixtures/getArticle/newsResponse.json");
 
 const CAPI_KEY = process.env.CAPI_KEY;
 
-const defaultSearchTerm = { queryString: "John Dalli" };
 const newsId = "70fc3c0e-1cb5-11e8-956a-43db76e69936";
-
-// need to add response checking to search
 
 describe("lib/fetchContent", () => {
   afterEach(() => {
@@ -24,58 +22,41 @@ describe("lib/fetchContent", () => {
         nock("http://api.ft.com")
           .post(`/content/search/v1?apiKey=${CAPI_KEY}`, responseBody.defualt)
           .reply(200, searchFixture);
-        const search = await subject.search(defaultSearchTerm);
+        const search = await subject.search(searchTerm.defualt);
         expect(nock.isDone()).to.be.true;
         expect(search.sapiObj).to.not.be.undefined;
       });
 
       it("adds constraints to queryString", async () => {
-        const constraintsSearchTerm = {
-          ...defaultSearchTerm,
-          constraints: ["TEST", "TEST2"]
-        };
         nock("http://api.ft.com")
           .post(
             `/content/search/v1?apiKey=${CAPI_KEY}`,
             responseBody.constraints
           )
           .reply(200, searchFixture);
-        const search = await await subject.search(constraintsSearchTerm);
+        const search = await await subject.search(searchTerm.constraints);
         expect(nock.isDone()).to.be.true;
         expect(search.sapiObj).to.not.be.undefined;
       });
 
       it("overrides default resultContext when supplied", async () => {
-        const resultContext = {
-          ...defaultSearchTerm,
-          maxResults: 11,
-          offset: 1
-        };
         nock("http://api.ft.com")
           .post(
             `/content/search/v1?apiKey=${CAPI_KEY}`,
             responseBody.resultContext
           )
           .reply(200, searchFixture);
-        const search = await await subject.search(resultContext);
+        const search = await await subject.search(searchTerm.resultContext);
         expect(nock.isDone()).to.be.true;
         expect(search.sapiObj).to.not.be.undefined;
       });
 
       context("with errors", () => {
         it("result does not include sapiObj", async () => {
-          const resultContext = {
-            ...defaultSearchTerm,
-            maxResults: 11,
-            offset: 1
-          };
           nock("http://api.ft.com")
-            .post(
-              `/content/search/v1?apiKey=${CAPI_KEY}`,
-              responseBody.resultContext
-            )
+            .post(`/content/search/v1?apiKey=${CAPI_KEY}`, responseBody.defualt)
             .reply(500, {});
-          const result = await subject.search(resultContext);
+          const result = await subject.search(searchTerm.defualt);
           expect(result.sapiObj).to.be.undefined;
         });
       });
@@ -98,6 +79,7 @@ describe("lib/fetchContent", () => {
         );
       });
     });
+
     context("error response", () => {
       beforeEach(() => {
         nock("http://api.ft.com")

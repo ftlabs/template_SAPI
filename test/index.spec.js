@@ -1,12 +1,12 @@
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 const app = require("../index");
+app.close();
 const expect = chai.expect;
 chai.use(chaiHttp);
 
-describe.only("App authentication", () => {
+describe("App authentication", () => {
   it("Should respond with http: 200 & static page on / GET", done => {
-    console.log(app);
     chai
       .request(app)
       .get("/")

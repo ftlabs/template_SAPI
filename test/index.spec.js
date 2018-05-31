@@ -4,8 +4,9 @@ const app = require("../index");
 const expect = chai.expect;
 chai.use(chaiHttp);
 
-describe("App authentication", () => {
+describe.only("App authentication", () => {
   it("Should respond with http: 200 & static page on / GET", done => {
+    console.log(app);
     chai
       .request(app)
       .get("/")

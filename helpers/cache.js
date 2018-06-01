@@ -1,15 +1,14 @@
-
 const debug = require('debug')('bin:lib:cache');
 
 let CACHE = {};
 
-function clearAll(){
+function clearAll() {
 	CACHE = {};
 	debug(`cache.clearAll`);
 }
 
-function get(key, valueFn){
-	if (! CACHE.hasOwnProperty(key)) {
+function get(key, valueFn) {
+	if (!CACHE.hasOwnProperty(key)) {
 		debug(`cache.get: miss: key=${key}`);
 		const value = valueFn();
 		CACHE[key] = value;
@@ -22,5 +21,5 @@ function get(key, valueFn){
 
 module.exports = {
 	get,
-	clearAll,
+	clearAll
 };

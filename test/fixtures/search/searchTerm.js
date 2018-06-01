@@ -1,18 +1,18 @@
-const defualt = { queryString: "John Dalli" };
+const original = { queryString: "John Dalli" };
 
 const constraints = {
-  ...defualt,
+  ...original,
   constraints: ["TEST", "TEST2"]
 };
 
 const resultContext = {
-  ...defualt,
+  ...original,
   maxResults: 11,
   offset: 1
 };
 
 module.exports = {
-  defualt,
+  original,
   constraints,
   resultContext
 };

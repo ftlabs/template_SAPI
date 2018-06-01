@@ -35,8 +35,8 @@ describe("lib/fetchContent", () => {
   describe("search", () => {
     context("for a 200 repsonse", () => {
       it("requests the search api with a queryString", async () => {
-        setUpSearchMock(responseBody.defualt);
-        const search = await subject.search(searchTerm.defualt);
+        setUpSearchMock(responseBody.original);
+        const search = await subject.search(searchTerm.original);
         expect(nock.isDone()).to.be.true;
         expect(search.sapiObj).to.not.be.undefined;
       });
@@ -57,8 +57,8 @@ describe("lib/fetchContent", () => {
 
       context("with errors", () => {
         it("result does not include sapiObj", async () => {
-          setUpSearchMock(responseBody.defualt, 400, "Forbidden");
-          const result = await subject.search(searchTerm.defualt);
+          setUpSearchMock(responseBody.original, 400, "Forbidden");
+          const result = await subject.search(searchTerm.original);
           expect(result.sapiObj).to.be.undefined;
         });
       });

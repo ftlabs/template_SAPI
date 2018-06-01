@@ -1,4 +1,4 @@
-const defualt = {
+const original = {
   queryString: "John Dalli",
   queryContext: { curations: ["ARTICLES", "BLOGS"] },
   resultContext: {
@@ -12,14 +12,14 @@ const defualt = {
 };
 
 const constraints = JSON.stringify({
-  ...defualt,
+  ...original,
   queryString: '"John Dalli" and TEST and TEST2'
 });
 
 const resultContext = JSON.stringify({
-  ...defualt,
+  ...original,
   resultContext: {
-    ...defualt.resultContext,
+    ...original.resultContext,
     maxResults: "11",
     offset: "1"
   }
@@ -28,5 +28,5 @@ const resultContext = JSON.stringify({
 module.exports = {
   constraints,
   resultContext,
-  defualt
+  original
 };

@@ -48,8 +48,13 @@ app.use((err, req, res, next) => {
   res.status(500).send("Something broke!");
 });
 
-const server = app.listen(process.env.PORT, function() {
-  console.log("Server is listening on port", process.env.PORT);
+const PORT = process.env.PORT;
+if (!PORT) {
+	throw new Error('ERROR: PORT not specified in env');
+}
+
+const server = app.listen(PORT, function() {
+  console.log("Server is listening on port", PORT);
 });
 
 module.exports = server;

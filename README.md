@@ -18,6 +18,8 @@ PORT= # auto set in Heroku, but needs specifying for development.
 Optional env var:
 - CAPI_CONCURRENCE= #default = 4
 
+Install nodemon globally by running `npm install -g nodemon`.
+
 Install the dependencies by running `npm install` and start the server with `npm start`.
 
 

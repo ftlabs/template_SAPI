@@ -4,7 +4,7 @@
 
 // To use:
 // - include the lib
-// const directly = require('lib/directly');
+// const directly = require('helpers/directly');
 // - create a list of fns which will each return a promise when called, e.g.
 // const articlePromisers = uuids.map( uuid => {
 //         return function () {

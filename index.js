@@ -1,8 +1,8 @@
 const dotenv = require("dotenv").config({
   silent: process.env.NODE_ENV === "production"
 });
-const package = require("./package.json");
-const debug = require("debug")(`${package.name}:index`);
+const debug = require("debug")(`index`);
+const s3o = require("@financial-times/s3o-middleware");
 const express = require("express");
 const path = require("path");
 const app = express();
@@ -29,6 +29,7 @@ if (!TOKEN) {
 }
 
 // these route *do* use s3o
+app.use(s3o);
 app.set("json spaces", 2);
 if (process.env.BYPASS_TOKEN !== "true") {
   app.use(validateRequest);

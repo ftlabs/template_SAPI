@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node index.js",
     "start:local": "nodemon index.js",
-    "test": "export CAPI_KEY=123 && mocha ./test --recursive --exit"
+    "test": "export CAPI_KEY=123 && mocha ./test --recursive --exit",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -33,9 +35,9 @@
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "express-enforces-ssl": "^1.1.0",
-    "express-handlebars": "^3.0.0",
+    "express-handlebars": "^3.0.2",
     "ffmpeg-static": "^2.0.0",
-    "hbs": "^4.0.1",
+    "hbs": "^4.0.4",
     "helmet": "^3.16.0",
     "is-uuid": "^1.0.2",
     "md5": "^2.2.1",
@@ -44,7 +46,8 @@
     "rss": "^1.2.1",
     "striptags": "^2.1.1",
     "uuid": "^3.0.1",
-    "xml2js": "^0.4.17"
+    "xml2js": "^0.4.17",
+    "snyk": "^1.116.4"
   },
   "devDependencies": {
     "nock": "^9.2.6",
@@ -54,5 +57,6 @@
   },
   "engines": {
     "node": "8.9.x"
-  }
+  },
+  "snyk": true
 }
